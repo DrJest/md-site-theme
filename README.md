@@ -14,6 +14,8 @@ You can use `mdq` parameter to search for Mission Days by date, area or type. Th
 - `area` - Area of the Mission Day (emea, apac, amer)
 - `type` - Type of the Mission Day (normal, lite, anomaly)
 - `city` - City of the Mission Day
+- `enl_poc` - Enlightened POC of the Mission Day
+- `res_poc` - Resistance POC of the Mission Day
 
 #### Examples
 - `/wp-json/wp/v2/mission-day?mdq={"date":{"<":"20240131"}}` - Get all Mission Days before 2024-01-31
