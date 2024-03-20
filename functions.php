@@ -1,6 +1,7 @@
 <?php
 
 require_once('widgets/mission-day-map.widget.php');
+require_once('widgets/mission-day-marker.widget.php');
 require_once('widgets/mission-day-calendar.widget.php');
 
 /**
@@ -25,6 +26,7 @@ add_filter('acf/fields/google_map/api', function ($api) {
 function register_missionday_widget()
 {
 	register_widget('MissionDayMap_Widget');
+	register_widget('MissionDayMarker_Widget');
 	register_widget('MissionDayCalendar_Widget');
 }
 add_action('widgets_init', 'register_missionday_widget');

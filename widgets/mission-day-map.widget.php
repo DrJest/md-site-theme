@@ -119,7 +119,8 @@ class MissionDayMap_Widget extends WP_Widget
           this.init = () => {
             this.map = L.map('<?php echo $id; ?>').setView([0, 0], 1);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              maxZoom: 19
+              maxZoom: 19,
+              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.map);
             this.initForm(jQuery);
           };
@@ -184,7 +185,9 @@ class MissionDayMap_Widget extends WP_Widget
               const marker = L.marker(position, {
                 icon: this.markerImages[markerInfo.acf.type]
               }).addTo(this.map);
-              marker.bindPopup(`<a href="${markerInfo.link}">${markerInfo.title.rendered}</a><br />${date}`);
+              marker.bindPopup(`<a href="${markerInfo.link}">${markerInfo.title.rendered}</a><br />${date}`, {
+                offset: L.point(0, -21)
+              });
               this.markers.push(marker);
             });
             this.map.fitBounds(this.markers.map(marker => marker.getLatLng()));
