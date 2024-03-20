@@ -21,4 +21,4 @@ You can use `mdq` parameter to search for Mission Days by date, area or type. Th
 - `/wp-json/wp/v2/mission-day?mdq={"city":"London"}` - Get all Mission Days in London
 - `/wp-json/wp/v2/mission-day?mdq={"area":["emea","amer"],"type":"lite"}` - Get all Mission Days in EMEA that are Lite
 
-If the value is an array, it will be treated as an IN query. If the value is an object, it will be treated as a comparison query.
+If the value is an array, it will be treated as an IN query. If the value is an object, it will be treated as a comparison query. If the value is a string, it will be treated as a full text search query.
