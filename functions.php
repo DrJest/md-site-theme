@@ -22,7 +22,7 @@ function hello_elementor_child_style()
   wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array('parent-style'));
 
   wp_enqueue_style('leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
-  wp_enqueue_script('leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
+  wp_enqueue_script('leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', array('jquery'));
 }
 
 add_filter('acf/fields/google_map/api', function ($api) {
