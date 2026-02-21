@@ -5,6 +5,7 @@ defined('WPINC') || die();
 require_once('widgets/mission-day-map.widget.php');
 require_once('widgets/mission-day-marker.widget.php');
 require_once('widgets/mission-day-calendar.widget.php');
+require_once('widgets/mission-day-umm.widget.php');
 
 const MDSITE_SECONDS_BETWEEN_GUEST_API_CALLS = 1;
 
@@ -35,6 +36,7 @@ function register_missionday_widget()
   register_widget('MissionDayMap_Widget');
   register_widget('MissionDayMarker_Widget');
   register_widget('MissionDayCalendar_Widget');
+  register_widget('MissionDayUMM_Widget');
 }
 add_action('widgets_init', 'register_missionday_widget');
 
@@ -156,3 +158,36 @@ function mdsite_rest_api_init(WP_REST_Server $wp_rest_server)
   }
 }
 add_action('rest_api_init', 'mdsite_rest_api_init', 10, 1);
+
+function md_site_add_rewrite_rule()
+{
+  add_rewrite_rule(
+    '^mission-day/([^/]+)/map/?$',
+    'index.php?mission-day=$matches[1]&map_page=1',
+    'top'
+  );
+}
+add_action('init', 'md_site_add_rewrite_rule');
+
+function mdsite_add_query_vars($vars)
+{
+  $vars[] = 'map_page';
+  return $vars;
+}
+add_filter('query_vars', 'mdsite_add_query_vars');
+
+function mdsite_load_map_template($template)
+{
+  if (get_query_var('map_page')) {
+    return locate_template('single-mission-day-map.php');
+  }
+  return $template;
+}
+add_filter('template_include', 'mdsite_load_map_template');
+
+function mdsite_rewrite_flush()
+{
+  md_site_add_rewrite_rule();
+  flush_rewrite_rules();
+}
+register_activation_hook(__FILE__, 'mdsite_rewrite_flush');
