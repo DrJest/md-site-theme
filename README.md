@@ -1,6 +1,9 @@
 # md-site-theme
 Custom Wordpress theme for MissionDay.site
 
+## Map
+- `/mission-day/{slug}/map` - Show or embed map (if available)
+
 ## API Endpoints
 API endpoints are available at `/wp-json/wp/v2/mission-day` and include the following:
 
